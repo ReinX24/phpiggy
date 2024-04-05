@@ -1,0 +1,3 @@
+# Notes
+
+Update httpd-vhosts.conf and hosts file in C:\Windows\System32\drivers\etc.
