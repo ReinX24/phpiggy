@@ -21,8 +21,11 @@ class Router
 
     private function normalizePath(string $path): string
     {
-        $path = trim($path, "/"); // removes any forward slashes
+        // Removes slashes at the start and end of the string
+        $path = trim($path, "/");
         $path = "/{$path}/";
+        // If the backslash appears more than 2 times, replace with /
+        $path = preg_replace("#[/]{2,}#", "/", $path);
 
         return $path;
     }
