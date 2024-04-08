@@ -1,6 +1,6 @@
 <?php
 
-// TODO: resume at 10. Exploring Regular Expressions
+// TODO: continue at 4. Rendering a Template
 
 include __DIR__ . "/../src/App/functions.php";
 
