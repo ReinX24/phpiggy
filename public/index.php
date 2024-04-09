@@ -1,6 +1,6 @@
 <?php
 
-// TODO: continue at 4. Rendering a Template
+// TODO: continue at 11-7. Creating an Output Buffer.
 
 include __DIR__ . "/../src/App/functions.php";
 
