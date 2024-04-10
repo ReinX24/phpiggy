@@ -31,7 +31,7 @@ class Router
         return $path;
     }
 
-    public function dispatch(string $path, string $method)
+    public function dispatch(string $path, string $method, Container $container = null)
     {
         // Send a request to the recorded paths and methods
         $path = $this->normalizePath($path);
@@ -50,10 +50,11 @@ class Router
             // Get classname and method name with array destructuring
             [$class, $function] = $route["controller"];
 
-            $controllerInstance = new $class;
+            $controllerInstance = $container ?
+                $container->resolve($class) :
+                new $class;
 
             $controllerInstance->{$function}();
         }
-
     }
 }

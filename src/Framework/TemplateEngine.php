@@ -16,6 +16,23 @@ class TemplateEngine
         // EXTR_SKIP means that if the variable already exists in the function,
         // then do not reassign the value with the extract method.
         extract($data, EXTR_SKIP);
-        include "{$this->basePath}/{$template}";
+
+        // Starts output buffering, makes sure that all the content is loaded 
+        // before the content is loaded to the page.
+        ob_start();
+
+        include $this->resolve($template);
+        // include "{$this->basePath}/{$template}";
+
+        $output = ob_get_contents();
+
+        ob_end_clean();
+
+        return $output; // returns the output buffer contents
+    }
+
+    public function resolve(string $path)
+    {
+        return "{$this->basePath}/{$path}";
     }
 }

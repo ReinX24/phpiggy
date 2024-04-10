@@ -6,10 +6,11 @@ declare(strict_types=1);
 require __DIR__ . "/../../vendor/autoload.php";
 
 use Framework\App;
-use App\Controllers\HomeController;
+use App\Config\Paths;
+use function App\Config\registerRoutes; // importing functions
 
-$app = new App();
+$app = new App(Paths::SOURCE . "App/container-definitions.php");
 
-$app->get("/", [HomeController::class, "home"]); // adds home page to router
+registerRoutes($app);
 
 return $app;
