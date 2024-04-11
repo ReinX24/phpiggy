@@ -1,6 +1,6 @@
 <?php
 
-// TODO: continue at 12-6. Reflective Programming.
+// TODO: continue at 12-9. Retrieving the Constructor Parameters.
 
 include __DIR__ . "/../src/App/functions.php";
 
