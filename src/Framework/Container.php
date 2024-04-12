@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Framework;
 
-use ReflectionClass;
+use ReflectionClass, ReflectionNamedType;
 use Framework\Exceptions\ContainerException;
 
 class Container
@@ -41,6 +41,44 @@ class Container
             return new $className;
         }
 
-        dd($params);
+        // Array that will contain the parameters for our controller
+        $dependencies = [];
+
+        foreach ($params as $param) {
+            $name = $param->getName();
+            $type = $param->getType();
+
+            if (!$type) {
+                throw new ContainerException("Failed to resolve class 
+                {$className} because {$name} is missing a type hint.");
+            }
+
+            // Checks if the type exists and not a ReflectionNamedType.
+            // Also checks if the type is a built in PHP data type, not a 
+            // custom type from a class.
+            if (!$type instanceof ReflectionNamedType || $type->isBuiltin()) {
+                throw new ContainerException("Failed to resolve class 
+                {$className} because invalid param name.");
+            }
+
+            $dependencies[] = $this->get($type->getName());
+        }
+
+        return $reflectionClass->newInstanceArgs($dependencies);
+    }
+
+    public function get(string $id)
+    {
+        if (!array_key_exists($id, $this->definitions)) {
+            throw new ContainerException("Class {$id} does not exist in container.");
+        }
+
+        // Items in the array are factory functions, functions that return an
+        // instance of a class.
+        $factory = $this->definitions[$id];
+
+        $dependency = $factory(); // creates an instance of the class
+
+        return $dependency;
     }
 }

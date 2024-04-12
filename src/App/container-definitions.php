@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-use FrameWork\TemplateEngine;
+use Framework\TemplateEngine;
 use App\Config\Paths;
 
 return [
-    TemplateEngine::class => function () {
-        return new TemplateEngine(Paths::VIEW);
-    }
+    // Returns a new instance of the TemplateEngine class
+    TemplateEngine::class => fn () => new TemplateEngine(Paths::VIEW)
 ];
