@@ -55,7 +55,20 @@ class Router
                 $container->resolve($class) :
                 new $class;
 
-            $controllerInstance->{$function}();
+            $action = fn () => $controllerInstance->{$function}();
+
+            // Adding middleware   
+            foreach ($this->middlewares as $middleware) {
+                $middlewareInstance = $container ?
+                    $container->resolve($middleware) :
+                    new $middleware;
+
+                $action = fn () => $middlewareInstance->process($action);
+            }
+
+            $action();
+
+            return; // prevents another route from becoming active
         }
     }
 
