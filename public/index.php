@@ -1,6 +1,6 @@
 <?php
 
-// TODO: continue at 13-22. Flashing Errors
+// TODO: continue at 13-26. Minimum Validation Rule
 
 include __DIR__ . "/../src/App/functions.php";
 
