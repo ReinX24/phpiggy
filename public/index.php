@@ -1,6 +1,6 @@
 <?php
 
-// TODO: continue at 13-9. Storing Validation Errors 
+// TODO: continue at 13-22. Flashing Errors
 
 include __DIR__ . "/../src/App/functions.php";
 
