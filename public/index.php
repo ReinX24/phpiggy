@@ -1,6 +1,6 @@
 <?php
 
-// TODO: continue at 13-26. Minimum Validation Rule
+// TODO: continue at 13-29. Password Matching Rule
 
 include __DIR__ . "/../src/App/functions.php";
 

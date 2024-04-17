@@ -1,6 +1,14 @@
 # Notes
 
+Update httpd-vhosts.conf and hosts file in C:\Windows\System32\drivers\etc.
+
+In the vhosts file, make sure that it is configured to show the project when we
+type in phpiggy.local in the browser.
+
+In the hosts file, we add in the following so that phpiggy.local would load:
+# XAMPP Virtual Hosts
+# Phpiggy
+127.0.0.1 phpiggy.local
+
 To make use of autoloading in composer, use the "compose init" to create the 
 composer json file and then "composer autload-dump" to generate vendor folder.
-
-Update httpd-vhosts.conf and hosts file in C:\Windows\System32\drivers\etc.
